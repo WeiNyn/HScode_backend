@@ -120,7 +120,7 @@ def findHS(corpuses, text, record):
   contents = output_dataframe['description'].as_matrix()
   contents = [e for e in contents] + [text]
 
-  distance_cal_tfidf = TfidfVectorizer()
+  distance_cal_tfidf = TfidfVectorizer(use_idf=False)
   distance_vector = distance_cal_tfidf.fit_transform(contents).todense()
 
   cosine_distance = [ 1 - cosine(element.reshape(-1), distance_vector[-1].reshape(-1)) for element in distance_vector[:-1]]
